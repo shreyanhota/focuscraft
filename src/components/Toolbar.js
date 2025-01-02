@@ -1,4 +1,5 @@
 import React from 'react';
+// import Export from './Export';
 
 function Toolbar({ onThemeChange, goal, onGoalChange }) {
   const handleGoalInput = (event) => {
@@ -11,7 +12,7 @@ function Toolbar({ onThemeChange, goal, onGoalChange }) {
       {/* Theme controls */}
       <button className="theme-button light-theme" onClick={() => onThemeChange('light')}>Light Theme</button>
       <button className="theme-button dark-theme" onClick={() => onThemeChange('dark')}>Dark Theme</button>
-
+      
       {/* Word goal input */}
       <input
         type="number"

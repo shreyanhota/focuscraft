@@ -4,7 +4,7 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  height: 90vh;
+  height: 100vh;
   background-color: #f5f5f5;
   padding: 20px; /* Adds margin around the editor area */
   box-sizing: border-box;
@@ -123,4 +123,58 @@
 
 .dark .progress {
   background-color: #007bff; /* Adjust to match dark theme accent */
+}
+
+
+
+/* Export Container */
+.export-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.export-button-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 800px; /* Matches progress bar and editor max-width */
+}
+
+/* Button Styles */
+.export-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Light Theme Buttons */
+.light .export-button {
+  background-color: #edf2f7; /* Tailwind Gray-100 */
+  color: #2d3748; /* Tailwind Gray-800 */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.light .export-button:hover {
+  background-color: #e2e8f0; /* Tailwind Gray-200 */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark Theme Buttons */
+.dark .export-button {
+  background-color: #2d3748; /* Tailwind Gray-800 */
+  color: #edf2f7; /* Tailwind Gray-100 */
+  box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+.dark .export-button:hover {
+  background-color: #4a5568; /* Tailwind Gray-700 */
+  box-shadow: 0px 6px 12px rgba(255, 255, 255, 0.2);
 }
