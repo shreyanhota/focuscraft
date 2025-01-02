@@ -5,6 +5,8 @@ import { saveAs } from 'file-saver';
 const Editor = ({goal}) => {
   const [text, setText] = useState('');
   const [wordCount, setWordCount] = useState(0);
+  const [charCount, setCharCount] = useState(0);
+  const [readingTime, setReadingTime] = useState('0 min');
 
   useEffect(() => {
     // Autosave to localStorage
@@ -17,6 +19,8 @@ const Editor = ({goal}) => {
   const handleTextChange = (e) => {
     setText(e.target.value);
     setWordCount(e.target.value.split(/\s+/).filter(Boolean).length);
+    setCharCount(text.length);
+    setReadingTime(`${Math.ceil(wordCount / 200)} min`);
   };
 
   const percentage = Math.min((wordCount / goal) * 100, 100);
@@ -47,6 +51,20 @@ const Editor = ({goal}) => {
         onChange={handleTextChange}
         placeholder="Start writing..."
       />
+      <div className="metrics-container">
+        <div className="metric">
+          <span className="metric-value">{charCount}</span>
+          <span className="metric-label"> characters</span>
+        </div> 
+        <div className="metric">
+            <span className="metric-value">{wordCount}</span>
+            <span className="metric-label"> words</span> 
+        </div>
+        <div className="metric">
+            <span className="metric-value">{readingTime}</span>
+            <span className="metric-label"> read</span> 
+        </div>
+      </div>
       <div className="progress-container">
         <div className="progress-bar">
           <div className="progress" style={{ width: `${percentage}%` }}></div>
