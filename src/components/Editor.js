@@ -44,45 +44,49 @@ const Editor = ({goal}) => {
 
 
   return (
-    <div className="editor-container">
-      <textarea
-        className="editor-textarea"
-        value={text}
-        onChange={handleTextChange}
-        placeholder="Start writing..."
-      />
-      <div className="metrics-container">
-        <div className="metric">
-          <span className="metric-value">{charCount}</span>
-          <span className="metric-label"> characters</span>
-        </div> 
-        <div className="metric">
+    <>
+      <div className="editor-container">
+        <textarea
+          className="editor-textarea"
+          value={text}
+          onChange={handleTextChange}
+          placeholder="Start writing..." />
+        <div className="metrics-container">
+          <div className="metric">
+            <span className="metric-value">{charCount}</span>
+            <span className="metric-label"> characters</span>
+          </div>
+          <div className="metric">
             <span className="metric-value">{wordCount}</span>
-            <span className="metric-label"> words</span> 
-        </div>
-        <div className="metric">
+            <span className="metric-label"> words</span>
+          </div>
+          <div className="metric">
             <span className="metric-value">{readingTime}</span>
-            <span className="metric-label"> read</span> 
+            <span className="metric-label"> read</span>
+          </div>
         </div>
       </div>
+
       <div className="progress-container">
-        <div className="progress-bar">
-          <div className="progress" style={{ width: `${percentage}%` }}></div>
+          <div className="progress-bar">
+            <div className="progress" style={{ width: `${percentage}%` }}></div>
+          </div>
+
+          {/* <div className="word-count">Word Count: {wordCount}</div> */}
+          <div className="export-container">
+            <button onClick={exportAsPlainText} className="export-button light">
+              Export as Text
+            </button>
+            <button onClick={exportAsMarkdown} className="export-button light">
+              Export as Markdown
+            </button>
+            <button onClick={exportAsPdf} className="export-button dark">
+              Export as PDF
+            </button>
+          </div>
         </div>
-      </div>
-      <div className="word-count">Word Count: {wordCount}</div>
-      <div className="export-container">
-        <button onClick={exportAsPlainText} className="export-button light">
-          Export as Text
-        </button>
-        <button onClick={exportAsMarkdown} className="export-button light">
-          Export as Markdown
-        </button>
-        <button onClick={exportAsPdf} className="export-button dark">
-          Export as PDF
-        </button>
-      </div>
-    </div>
+    </>
+    
   );
 };
 

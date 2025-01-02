@@ -2,11 +2,11 @@
 .editor-container {
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
   background-color: #f5f5f5;
-  padding: 20px; /* Adds margin around the editor area */
+  padding: 10px; /* Adds margin around the editor area */
   box-sizing: border-box;
 }
 
@@ -37,9 +37,11 @@
 /* Styling for the text area */
 
 .editor-textarea {
-  width: 100%;
+  width: 80%;
   max-width: 800px;
-  height: 70%;
+  max-height:500px;
+  height: 80%;
+  margin: 50px; 
   padding: 20px;
   border-radius: 10px;
   outline: none;
@@ -57,13 +59,13 @@
 }
 
 /* Styling for the word count */
-.word-count {
+/* .word-count {
   position: absolute;
   bottom: 20px;
   right: 20px;
   font-size: 0.9em;
   color: #555;
-}
+} */
 
 
 /* Progress bar container */
@@ -73,8 +75,8 @@
   justify-content: center;
   align-items: stretch;
   width: 100%;
-  max-width: 800px; /* Align with editor max-width */
-  margin: 20px auto 0; /* Responsive spacing */
+  max-width: 900px; /* Align with editor max-width */
+  margin: 10px auto 0; /* Responsive spacing */
   padding: 10px; /* Adds spacing around the progress bar */
   background-color: #f9f9f9; /* Matches light theme container */
   border-radius: 10px; /* Neat container appearance */
@@ -85,9 +87,9 @@
 /* Progress bar background */
 .progress-bar {
   width: 100%;
-  height: 10px;
+  height: 20px;
   background-color: #ddd;
-  border-radius: 5px; /* Rounded edges */
+  border-radius: 10px; /* Rounded edges */
   overflow: hidden; /* Ensures progress doesn't overflow */
 }
 
@@ -177,4 +179,61 @@
 .dark .export-button:hover {
   background-color: #4a5568; /* Tailwind Gray-700 */
   box-shadow: 0px 6px 12px rgba(255, 255, 255, 0.2);
+}
+
+
+/* Metrics container */
+.metrics-container {
+  width: 10%;
+  height: 58.5vh;
+  padding: 20px;
+  border: 1px solid #444;
+  border-radius: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #444;
+  /* background-color: var(--bg-color); */
+  color: var(--text-color);
+  box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+
+  
+}
+
+.metric {
+  margin-bottom: 15px;
+  font-size: 1.2em;
+  font-weight: 600;
+} 
+
+/* Dark Theme */
+.dark .metrics-container {
+  background-color: #1e1e1e;
+  border-color: #444;
+}
+
+.dark .metric-value {
+  color: #76c7c0; /* Complementary to the progress bar color in dark mode */
+}
+
+.dark .metric-label {
+  color: #bbb;
+}
+
+
+/* Light Theme */
+.light .metrics-container {
+  background-color: #f5f5f5;
+  border-color: #ccc;
+}
+
+.light .metric-value {
+  color: #007bff;
+}
+
+.light .metric-label {
+  color: #555;
 }
