@@ -1,0 +1,126 @@
+/* Container for the editor */
+.editor-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 90vh;
+  background-color: #f5f5f5;
+  padding: 20px; /* Adds margin around the editor area */
+  box-sizing: border-box;
+}
+
+/* Light theme styles */
+.light .editor-container {
+  background-color: #f5f5f5;
+}
+
+.light .editor-textarea {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark theme styles */
+.dark .editor-container {
+  background-color: #121212;
+}
+
+.dark .editor-textarea {
+  background-color: #1e1e1e;
+  color: #f5f5f5;
+  border: 1px solid #444;
+  box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+/* Styling for the text area */
+
+.editor-textarea {
+  width: 100%;
+  max-width: 800px;
+  height: 70%;
+  padding: 20px;
+  border-radius: 10px;
+  outline: none;
+  resize: none;
+  font-size: 1.2em;
+  line-height: 1.6;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover and focus effects for the text area */
+.editor-textarea:hover,
+.editor-textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for the word count */
+.word-count {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 0.9em;
+  color: #555;
+}
+
+
+/* Progress bar container */
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  max-width: 800px; /* Align with editor max-width */
+  margin: 20px auto 0; /* Responsive spacing */
+  padding: 10px; /* Adds spacing around the progress bar */
+  background-color: #f9f9f9; /* Matches light theme container */
+  border-radius: 10px; /* Neat container appearance */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+/* Progress bar background */
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #ddd;
+  border-radius: 5px; /* Rounded edges */
+  overflow: hidden; /* Ensures progress doesn't overflow */
+}
+
+/* Progress fill */
+.progress {
+  height: 100%;
+  background-color: #76c7c0;
+  transition: width 0.3s ease;
+  border-radius: 5px 0 0 5px; /* Smooth start of the progress */
+}
+
+/* Light theme styles */
+.light .progress-container {
+  background-color: #f5f5f5;
+}
+
+.light .progress-bar {
+  background-color: #eee;
+}
+
+.light .progress {
+  background-color: #76c7c0;
+}
+
+/* Dark theme styles */
+.dark .progress-container {
+  background-color: #1e1e1e;
+}
+
+.dark .progress-bar {
+  background-color: #444;
+}
+
+.dark .progress {
+  background-color: #007bff; /* Adjust to match dark theme accent */
+}
