@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // import './styles/editor.css';
 import { saveAs } from 'file-saver';
+import { jsPDF } from 'jspdf';
 
 const Editor = ({goal}) => {
   const [text, setText] = useState('');
@@ -45,8 +46,9 @@ const Editor = ({goal}) => {
   };
 
   const exportAsPdf = () => {
-    const pdfContent = `Document\n\n${text}`;
-    const blob = new Blob([pdfContent], { type: 'application/pdf;charset=utf-8' });
+    const pdf = new jsPDF();
+    pdf.text(`Document\n\n${text}`, 10, 10); // Add your content to the PDF
+    const blob = pdf.output('blob');
     saveAs(blob, 'document.pdf');
   };
 
