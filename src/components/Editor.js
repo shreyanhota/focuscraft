@@ -13,14 +13,22 @@ const Editor = ({goal}) => {
     const timer = setTimeout(() => {
       localStorage.setItem('autosave', text);
     }, 1000);
+    
+    const wordCount = (text.split(/\s+/).filter(Boolean).length);
+    const charCount = text.length;
+    const readingTime = `${Math.ceil(wordCount / 200)} min`;
+
+    setWordCount(wordCount);
+    setCharCount(charCount);
+    setReadingTime(readingTime);
     return () => clearTimeout(timer);
   }, [text]);
 
   const handleTextChange = (e) => {
     setText(e.target.value);
-    setWordCount(e.target.value.split(/\s+/).filter(Boolean).length);
-    setCharCount(text.length);
-    setReadingTime(`${Math.ceil(wordCount / 200)} min`);
+    // setWordCount(e.target.value.split(/\s+/).filter(Boolean).length);
+    // setCharCount(text.length);
+    // setReadingTime(`${Math.ceil(wordCount / 200)} min`);
   };
 
   const percentage = Math.min((wordCount / goal) * 100, 100);
