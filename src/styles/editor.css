@@ -1,18 +1,59 @@
+.slate-container {
+  display: flex;
+  justify-content:center;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  box-sizing: border-box;
+  /* height: 80vh;
+  background-color: #f5f5f5;
+  padding: 10px; 
+  box-sizing: border-box; */
+}
+
+.analysis-container {
+  width: 40%;
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  /* height: 80vh;
+  background-color: #f5f5f5;
+  padding: 10px; 
+  box-sizing: border-box; */
+  max-width: 500px;
+}
+
+.tool-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  /* height: 80vh;
+  background-color: #f5f5f5;
+  padding: 10px; 
+  box-sizing: border-box; */
+}
+
+
 /* Container for the editor */
 .editor-container {
+  width: 60%; 
   display: flex;
   justify-content: center;
   flex-direction: row;
   align-items: center;
-  height: 80vh;
-  background-color: #f5f5f5;
+  height: 81vh;
+
+  /* background-color: #f5f5f5; */
   padding: 10px; /* Adds margin around the editor area */
   box-sizing: border-box;
 }
 
 /* Light theme styles */
 .light .editor-container {
-  background-color: #f5f5f5;
+  /* background-color: #f5f5f5; */
 }
 
 .light .editor-textarea {
@@ -24,7 +65,7 @@
 
 /* Dark theme styles */
 .dark .editor-container {
-  background-color: #121212;
+  /* background-color: #121212; */
 }
 
 .dark .editor-textarea {
@@ -37,12 +78,10 @@
 /* Styling for the text area */
 
 .editor-textarea {
-  width: 80%;
-  max-width: 800px;
-  max-height:500px;
-  height: 80%;
+  width: 100%;
+  height: 70%;
   margin: 50px; 
-  padding: 20px;
+  padding: 30px;
   border-radius: 10px;
   outline: none;
   resize: none;
@@ -184,8 +223,8 @@
 
 /* Metrics container */
 .metrics-container {
-  width: 10%;
-  height: 58.5vh;
+  width: 80%;
+  height: 28.5vh;
   padding: 20px;
   border: 1px solid #444;
   border-radius: 10px;
@@ -237,3 +276,6 @@
 .light .metric-label {
   color: #555;
 }
+
+
+
