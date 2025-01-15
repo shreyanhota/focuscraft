@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import * as tf from '@tensorflow/tfjs';
+// import * as tf from '@tensorflow/tfjs';
+import axios from 'axios';
 
 const Analysis = ({ text }) => {
   const [wordCount, setWordCount] = useState(0);
@@ -7,50 +8,69 @@ const Analysis = ({ text }) => {
   const [readingTime, setReadingTime] = useState('0 min');
   const [sentimentScore, setSentimentScore] = useState(0);
 
-  // Memoized function for sentiment analysis
-  const analyzeSentiment = useCallback(async () => {
-    // Preprocess text into tokens
-    const preprocessText = (input) => {
-      const normalizedText = input.toLowerCase().replace(/[^a-z\s]/g, '');
-      const words = normalizedText.split(/\s+/).filter(Boolean);
-  
-      // Return numeric representations for words (placeholder: word length)
-      return words.length > 0 ? words.map((word) => word.length / 10) : [0];
-    };
-  
-    const tokens = preprocessText(text);
-  
-    if (tokens.length === 0) {
-      setSentimentScore(0); // Handle empty input
-      return;
+// Function to fetch sentiment score from the backend
+const fetchSentimentScore = async () => {
+  try {
+    const response = await axios.post('http://localhost:5000/analyze', { text });
+    if (response.data && response.data.sentiment_score !== undefined) {
+      setSentimentScore(response.data.sentiment_score);
+    } else {
+      setSentimentScore(0); // Default in case of invalid response
     }
+  } catch (error) {
+    console.error('Error fetching sentiment score:', error);
+    setSentimentScore(0); // Fallback in case of an error
+  }
+};
+
+
+
+
+
+  // // Memoized function for sentiment analysis
+  // const analyzeSentiment = useCallback(async () => {
+  //   // Preprocess text into tokens
+  //   const preprocessText = (input) => {
+  //     const normalizedText = input.toLowerCase().replace(/[^a-z\s]/g, '');
+  //     const words = normalizedText.split(/\s+/).filter(Boolean);
   
-    const tensorInput = tf.tensor([tokens], [1, tokens.length]);
+  //     // Return numeric representations for words (placeholder: word length)
+  //     return words.length > 0 ? words.map((word) => word.length / 10) : [0];
+  //   };
   
-    // Dummy model setup
-    const model = tf.sequential();
-    model.add(tf.layers.dense({ units: 8, inputShape: [tokens.length], activation: 'relu' }));
-    model.add(tf.layers.dense({ units: 1, activation: 'sigmoid' }));
-    model.compile({ optimizer: 'adam', loss: 'binaryCrossentropy' });
+  //   const tokens = preprocessText(text);
   
-    // Initialize weights properly
-    const inputLayerWeights = model.layers[0].getWeights()[0];
-    const biasWeights = model.layers[0].getWeights()[1];
+  //   if (tokens.length === 0) {
+  //     setSentimentScore(0); // Handle empty input
+  //     return;
+  //   }
   
-    if (inputLayerWeights && biasWeights) {
-      const newWeights = tf.randomNormal(inputLayerWeights.shape);
-      model.layers[0].setWeights([newWeights, biasWeights]);
-    }
+  //   const tensorInput = tf.tensor([tokens], [1, tokens.length]);
   
-    try {
-      // Predict sentiment
-      const prediction = model.predict(tensorInput).dataSync()[0];
-      setSentimentScore(prediction);
-    } catch (error) {
-      console.error("Error during prediction:", error);
-      setSentimentScore(0); // Fallback for errors
-    }
-  }, [text]);
+  //   // Dummy model setup
+  //   const model = tf.sequential();
+  //   model.add(tf.layers.dense({ units: 8, inputShape: [tokens.length], activation: 'relu' }));
+  //   model.add(tf.layers.dense({ units: 1, activation: 'sigmoid' }));
+  //   model.compile({ optimizer: 'adam', loss: 'binaryCrossentropy' });
+  
+  //   // Initialize weights properly
+  //   const inputLayerWeights = model.layers[0].getWeights()[0];
+  //   const biasWeights = model.layers[0].getWeights()[1];
+  
+  //   if (inputLayerWeights && biasWeights) {
+  //     const newWeights = tf.randomNormal(inputLayerWeights.shape);
+  //     model.layers[0].setWeights([newWeights, biasWeights]);
+  //   }
+  
+  //   try {
+  //     // Predict sentiment
+  //     const prediction = model.predict(tensorInput).dataSync()[0];
+  //     setSentimentScore(prediction);
+  //   } catch (error) {
+  //     console.error("Error during prediction:", error);
+  //     setSentimentScore(0); // Fallback for errors
+  //   }
+  // }, [text]);
   
 
   // Update metrics and sentiment when text changes
@@ -63,8 +83,10 @@ const Analysis = ({ text }) => {
     setCharCount(charCount);
     setReadingTime(readingTime);
 
-    analyzeSentiment();
-  }, [text, analyzeSentiment]);
+    fetchSentimentScore(); 
+
+    // analyzeSentiment();
+  }, [text]);
 
   return (
     <div className="analysis-container">
